@@ -1,5 +1,5 @@
 (function(){
-  var counter = 0;
+  var textcounter = 0;
   var rainbowClass = document.getElementsByClassName('rainbow');
   var lengtharray = []; //Remembers the length of the content with class=rainbow so for loop doesnt change color of undefined
   var rainbowarray = []; //Becomes the final array containing all the <span>'d text
@@ -33,12 +33,22 @@
     setInterval(function colorchange() {
       for (var i = 0; i < b; i++)
       {
-        finalarray[a][i].style.color = 'hsl(' + (counter + Math.floor(i * 3)) + ', 100%, 70%';
+        finalarray[a][i].style.color = 'hsl(' + (textcounter + Math.floor(i * 3)) + ', 100%, 70%';
       }
-      counter++;
+      textcounter++;
     }, 7);
   }
 
+  var backgroundcounter = 0;
+  var rainbowId = document.getElementsByClassName('rainbowbackground');
 
+
+    setInterval(function colorchange() {
+	for(var i = 0; i < rainbowId.length; i++)
+	{
+	        rainbowId[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * -1)) + ', 100%, 70%';
+	}
+      backgroundcounter++;
+    }, 15);
 
 })()
