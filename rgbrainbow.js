@@ -43,12 +43,12 @@
   var rainbowId = document.getElementsByClassName('rainbowbackground');
 
 
-    setInterval(function colorchange() {
-	for(var i = 0; i < rainbowId.length; i++)
-	{
-	        rainbowId[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * -1)) + ', 100%, 70%';
-	}
-      backgroundcounter++;
-    }, 15);
+  setInterval(function colorchange() {
+	   for(var i = 0; i < rainbowId.length; i++)
+	    {
+	      rainbowId[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * -1)) + ', 100%, 70%';
+	    }
+    backgroundcounter++;
+  }, 15);
 
 })()
