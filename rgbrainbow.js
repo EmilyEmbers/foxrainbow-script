@@ -1,6 +1,7 @@
 (function(){
     let textspeed = 1;
     let backgroundspeed = 1;
+    let hoverspeed = 10;
 
     let classestoberainbowed = document.getElementsByClassName('foxrainbow');
     let backgroundtoberainbowed = document.getElementsByClassName('foxrainbowbg');
@@ -30,65 +31,39 @@
         rainbowelements[i] = spanElementContents(rainbowhover[i]);
     }
 
-    //Set up the wavey effect with counters. Essentially, put an array inside of an array
-    //so that you can then loop through it more easily later.
+    //Set up the wavey effect with counters.
     for(let id = 0; id < rainbowelements.length; id++) {
+        hovercounters[id] = [];
         for(let i = 0; i < rainbowelements[id].length; i++) {
-            hovercounters[id] = [];
-            hovercounters[id][i] = 0 + i;
+            hovercounters[id].push(i);
         }
-        
     }
-
 
     // Add event listeners for every item classed foxrainbowhover.
     for(let id = 0; id < rainbowhover.length; id++) {
         rainbowhover[id].addEventListener("mouseenter", function startanimation() {
-            console.log('hit');
+
                
             hoverinterval[id] = setInterval(() => {
                 for(let i = 0; i < rainbowelements[id].length; i++) {
-                    rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * textspeed)) + ', 100%, 70%';
-                    
-                    
+                    rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * hoverspeed)) + ', 100%, 70%';
 
-                    if(hovercounters[id][i] == 360)
-                    {
-                        hovercounters[id][i] = 0;
-                    }
-                    else {
-                        hovercounters[id][i]++;
-                    }
+                    
+                    hovercounters[id][i]++;
+
                 }
-            }, 7);
-
-
-
-
-
-
+            }, 8);
         }, false);
 
-
-
         rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
-            console.log('agh');
+
 
             clearInterval(hoverinterval[id]);
             for(let i = 0; i < rainbowelements[id].length; i++) {
                 rainbowelements[id][i].style.color = 'black';
             }
-
-            
-            
         }, false);
     }
-
-
-
-
-    
-
 })()
 
 
