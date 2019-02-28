@@ -2,6 +2,7 @@
     let textspeed = 1;
     let backgroundspeed = 1;
     let hoverspeed = 10;
+    let hoverbackgroundspeed = -10;
 
     let classestoberainbowed = document.getElementsByClassName('foxrainbow');
     let backgroundtoberainbowed = document.getElementsByClassName('foxrainbowbg');
@@ -20,12 +21,13 @@
     }, 15);
 
 
-    //On-hover testing!
+    //Turn the rainbow effect on only when the mouse is over the element. Use foxrainbowhover to use.
 
     let rainbowhover = document.getElementsByClassName('foxrainbowhover');
     let rainbowelements = [];
     let hoverinterval = [];
     let hovercounters = [];
+    let originalcolors = [];
 
     for(let i = 0; i < rainbowhover.length; i++) {
         rainbowelements[i] = spanElementContents(rainbowhover[i]);
@@ -39,31 +41,63 @@
         }
     }
 
+    //Save the original color to easily return to it later.
+    for(let i = 0; i < rainbowhover.length; i++) {
+        originalcolors[i] = rainbowhover[i].style.color;
+    }
+
     // Add event listeners for every item classed foxrainbowhover.
     for(let id = 0; id < rainbowhover.length; id++) {
         rainbowhover[id].addEventListener("mouseenter", function startanimation() {
 
-               
             hoverinterval[id] = setInterval(() => {
+
                 for(let i = 0; i < rainbowelements[id].length; i++) {
                     rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * hoverspeed)) + ', 100%, 70%';
-
-                    
                     hovercounters[id][i]++;
-
                 }
-            }, 8);
+            }, 7);
         }, false);
 
         rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
-
-
             clearInterval(hoverinterval[id]);
             for(let i = 0; i < rainbowelements[id].length; i++) {
-                rainbowelements[id][i].style.color = 'black';
+                rainbowelements[id][i].style.color = originalcolors[id];
             }
         }, false);
+
     }
+
+
+
+        //Hover but for backgrounds.
+
+        let rainbowhoverbg = document.getElementsByClassName('foxrainbowhoverbg');
+        let hoverbginterval = [];
+        let hoverbgcounter = 0;
+        let originalbgcolors = [];
+
+        //Save the original color to easily return to it later, but for backgrounds.
+        for(let i = 0; i < rainbowhover.length; i++) {
+            originalbgcolors[i] = rainbowhover[i].style.color;
+        }
+    
+        for(let id = 0; id < rainbowhoverbg.length; id++) {
+            rainbowhoverbg[id].addEventListener("mouseenter", function startbganimation() {
+                   
+                hoverbginterval[id] = setInterval(() => {
+                    for(let i = 0; i < rainbowhoverbg.length; i++) {
+                        rainbowhoverbg[0].style.backgroundColor = 'hsl(' + (hoverbgcounter + Math.floor(i * hoverbackgroundspeed)) + ', 100%, 70%';
+                        hoverbgcounter++;
+                    }
+                }, 15);
+            }, false);
+        
+            rainbowhoverbg[id].addEventListener("mouseleave", function stopbganimation() {
+                clearInterval(hoverbginterval[id]);
+                rainbowhoverbg[id].style.backgroundColor = originalbgcolors[id];
+            }, false); 
+        }
 })()
 
 
@@ -137,6 +171,3 @@ function spanElementContents(element) {
     }
     return spans;
 }
-
-
-
