@@ -1,4 +1,7 @@
 (function(){
+  let textspeed = 1;
+  let backgroundspeed = -1;
+
   var textcounter = 0;
   var rainbowClass = document.getElementsByClassName('rainbow');
   var lengtharray = []; //Remembers the length of the content with class=rainbow so for loop doesnt change color of undefined
@@ -33,7 +36,7 @@
     setInterval(function colorchange() {
       for (var i = 0; i < b; i++)
       {
-        finalarray[a][i].style.color = 'hsl(' + (textcounter + Math.floor(i * 3)) + ', 100%, 70%';
+        finalarray[a][i].style.color = 'hsl(' + (textcounter + Math.floor(i * textspeed)) + ', 100%, 70%';
       }
       textcounter++;
     }, 7);
@@ -46,7 +49,7 @@
   setInterval(function colorchange() {
 	   for(var i = 0; i < rainbowId.length; i++)
 	    {
-	      rainbowId[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * -1)) + ', 100%, 70%';
+	      rainbowId[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * backgroundspeed)) + ', 100%, 70%';
 	    }
     backgroundcounter++;
   }, 15);
