@@ -18,41 +18,76 @@
         backgroundcounter++;
     }, 15);
 
+
     //On-hover testing!
 
     let rainbowhover = document.getElementsByClassName('foxrainbowhover');
-    let hoverspans = spanArrayContents(rainbowhover);
-    let hoverinterval = 0;
+    let rainbowelements = [];
+    let hoverinterval = [];
+    let hovercounters = [];
 
     for(let i = 0; i < rainbowhover.length; i++) {
-        rainbowhover[i].addEventListener("mouseover", startanimation, false);
-        rainbowhover[i].addEventListener("mouseout", stopanimation, false);
+        rainbowelements[i] = spanElementContents(rainbowhover[i]);
     }
 
-    let hovercounters = [];
-    for(let i = 0; i < hoverspans.length; i++) {
-        hovercounters[i] = 0 + i;
+    //Set up the wavey effect with counters. Essentially, put an array inside of an array
+    //so that you can then loop through it more easily later.
+    for(let id = 0; id < rainbowelements.length; id++) {
+        for(let i = 0; i < rainbowelements[id].length; i++) {
+            hovercounters[id] = [];
+            hovercounters[id][i] = 0 + i;
+        }
+        
     }
-    
 
-    function startanimation() {
-        hoverinterval = setInterval(() => {
-            for(let i = 0; i < hoverspans.length; i++) {
-                hoverspans[i].style.color = 'hsl(' + (hovercounters[i] + Math.floor(i * textspeed)) + ', 100%, 70%';
-                if(hovercounters[i] == 360)
-                {
-                    hovercounters[i] = 0;
+
+    // Add event listeners for every item classed foxrainbowhover.
+    for(let id = 0; id < rainbowhover.length; id++) {
+        rainbowhover[id].addEventListener("mouseenter", function startanimation() {
+            console.log('hit');
+               
+            hoverinterval[id] = setInterval(() => {
+                for(let i = 0; i < rainbowelements[id].length; i++) {
+                    rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * textspeed)) + ', 100%, 70%';
+                    
+                    
+
+                    if(hovercounters[id][i] == 360)
+                    {
+                        hovercounters[id][i] = 0;
+                    }
+                    else {
+                        hovercounters[id][i]++;
+                    }
                 }
-                else {
-                    hovercounters[i]++;
-                }
+            }, 7);
+
+
+
+
+
+
+        }, false);
+
+
+
+        rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
+            console.log('agh');
+
+            clearInterval(hoverinterval[id]);
+            for(let i = 0; i < rainbowelements[id].length; i++) {
+                rainbowelements[id][i].style.color = 'black';
             }
-        }, 7);
+
+            
+            
+        }, false);
     }
 
-    function stopanimation() {
-        clearInterval(hoverinterval);
-    }
+
+
+
+    
 
 })()
 
@@ -80,7 +115,8 @@ function textcolorchange(rainbowarray, rainbowspeed) {
 }
 
 
-//Prepare text for having its color changed by splicing it up into individual bits and taking it out of the HTMLcollection.
+//Prepare text for having its color changed by splicing it up into individual bits
+//and taking it out of the HTMLcollection.
 
 function spanArrayContents(classes) {
 
@@ -103,5 +139,29 @@ function spanArrayContents(classes) {
     }
     return spans;
 }
+
+//Same as above except for single elements instead of an array of elements. 
+//Helps split them up and give them an ID before they're taken to the slaughterhouse.
+
+function spanElementContents(element) {
+    let spans = [];
+    let chars = [];
+
+    chars.push(element.innerText.split(""));
+    for(let i = 0; i < chars.length; i++){
+        element.innerHTML = chars[i].map(function(char) {
+            return '<span>' + char + "</span>";
+        }).join('');
+    }
+
+    
+    
+    let temphtmlcollection = [].slice.call(element.children)
+    for(let j = 0; j < temphtmlcollection.length; j++) {
+         spans.push(temphtmlcollection[j]);
+    }
+    return spans;
+}
+
 
 
