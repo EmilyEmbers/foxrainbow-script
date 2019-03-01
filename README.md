@@ -13,9 +13,9 @@ You can change the speed and direction of the effect by settings the individual 
 
 For the lazy:
 
-Classes:
-
-foxrainbow
-foxrainbowbg
-foxrainbowhover
-foxrainbowhoverbg
+Class  | Effect
+------------- | -------------
+foxrainbow  | Rainbow effect on anything with css color support.
+foxrainbowbg  | Rainbow effect on anything with css background-color support.
+foxrainbowhover  | Rainbow effect on anything with css color support. Turns on/off by moving the mouse on top / away.
+foxrainbowhoverbg  | Rainbow effect on anything with css background-color support. Turns on/off by moving the mouse on top / away.
