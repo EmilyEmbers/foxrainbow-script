@@ -19,5 +19,6 @@ Class  | Effect
 ------------- | -------------
 foxrainbow  | Rainbow effect on anything with css color support.
 foxrainbowbg  | Rainbow effect on anything with css background-color support.
-foxrainbowhover  | Rainbow effect on anything with css color support. Turns on/off by moving the mouse on top / away.
+foxrainbowhover  | Rainbow effect on anything with css color support. Turns on by moving the mouse on top. You can select a different target by passing along their id using data-foxrainbowhover.
+foxrainbowhoverinv  | Rainbow effect on anything with css color support. Turns off by moving the mouse on top. You can select a different target by passing along their id using data-foxrainbowhover.
 foxrainbowhoverbg  | Rainbow effect on anything with css background-color support. Turns on/off by moving the mouse on top / away.
