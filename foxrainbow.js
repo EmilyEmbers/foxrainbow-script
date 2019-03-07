@@ -54,25 +54,51 @@
         originalcolors[i] = rainbowhover[i].style.color;
     }
 
-    // Add event listeners for every item classed foxrainbowhover.
+    // Add event listeners for every item classed foxrainbowhover. If it has a data tag called foxrainbowhover with an id inside it instead uses that to start the hover effect.
     for(let id = 0; id < rainbowhover.length; id++) {
-        rainbowhover[id].addEventListener("mouseenter", function startanimation() {
+        //Checks if the passed along id exists or not. If it doesn't, execute regularly. If it does, execute with hover on a different element.
+        if(rainbowhover[id].dataset.foxrainbowhover.trim()) {
+            let hoverelement = document.getElementById(rainbowhover[id].dataset.foxrainbowhover);
 
-            hoverinterval[id] = setInterval(() => {
+            hoverelement.addEventListener("mouseenter", function startanimation() {
 
+                hoverinterval[id] = setInterval(() => {
+    
+                    for(let i = 0; i < rainbowelements[id].length; i++) {
+                        rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * hoverspeed)) + ', 100%, 70%';
+                        hovercounters[id][i]++;
+                    }
+                }, 7);
+            }, false);
+    
+            hoverelement.addEventListener("mouseleave", function stopanimation() {
+                clearInterval(hoverinterval[id]);
                 for(let i = 0; i < rainbowelements[id].length; i++) {
-                    rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * hoverspeed)) + ', 100%, 70%';
-                    hovercounters[id][i]++;
+                    rainbowelements[id][i].style.color = originalcolors[id];
                 }
-            }, 7);
-        }, false);
+            }, false);
 
-        rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
-            clearInterval(hoverinterval[id]);
-            for(let i = 0; i < rainbowelements[id].length; i++) {
-                rainbowelements[id][i].style.color = originalcolors[id];
-            }
-        }, false);
+        }
+        else {
+            rainbowhover[id].addEventListener("mouseenter", function startanimation() {
+
+                hoverinterval[id] = setInterval(() => {
+    
+                    for(let i = 0; i < rainbowelements[id].length; i++) {
+                        rainbowelements[id][i].style.color = 'hsl(' + (hovercounters[id][i] + Math.floor(i * hoverspeed)) + ', 100%, 70%';
+                        hovercounters[id][i]++;
+                    }
+                }, 7);
+            }, false);
+    
+            rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
+                clearInterval(hoverinterval[id]);
+                for(let i = 0; i < rainbowelements[id].length; i++) {
+                    rainbowelements[id][i].style.color = originalcolors[id];
+                }
+            }, false);
+        }
+
 
     }
 
