@@ -68,13 +68,13 @@
 
     //Save the original color to easily return to it later.
     for(let i = 0; i < rainbowhover.length; i++) {
-        originalinvcolors[i] = rainbowhover[i].style.color;
+        originalcolors[i] = rainbowhover[i].style.color;
     }
 
     // Add event listeners for every item classed foxrainbowhover. If it has a data tag called foxrainbowhover with an id inside it instead uses that to start the hover effect.
     for(let id = 0; id < rainbowhover.length; id++) {
         //Checks if the passed along id exists or not. If it doesn't, execute regularly. If it does, execute with hover on a different element.
-        if(rainbowhover[id].dataset.foxrainbowhover.trim()) {
+        if(rainbowhover[id].dataset.foxrainbowhover) {
             let hoverelement = document.getElementById(rainbowhover[id].dataset.foxrainbowhover);
 
             hoverelement.addEventListener("mouseenter", function startanimation() {
@@ -89,6 +89,7 @@
             }, false);
     
             hoverelement.addEventListener("mouseleave", function stopanimation() {
+                console.log("gay1");
                 clearInterval(hoverinterval[id]);
                 for(let i = 0; i < rainbowelements[id].length; i++) {
                     rainbowelements[id][i].style.color = originalcolors[id];
@@ -111,6 +112,7 @@
             rainbowhover[id].addEventListener("mouseleave", function stopanimation() {
                 clearInterval(hoverinterval[id]);
                 for(let i = 0; i < rainbowelements[id].length; i++) {
+                    console.log("gay1");
                     rainbowelements[id][i].style.color = originalcolors[id];
                 }
             }, false);
