@@ -3,7 +3,7 @@
 
 (function(){
     let textspeed = 1;
-  	let backgroundspeed = 0.1;
+    let backgroundspeed = 0.1;
     let hoverspeed = 10;
     let hoverbackgroundspeed = -1;
 
