@@ -8,7 +8,7 @@
 
 (function(){
     let textspeed = 1;
-    let backgroundspeed = 1;
+  	let backgroundspeed = 0.1;
     let hoverspeed = 10;
     let hoverbackgroundspeed = -1;
 
@@ -23,9 +23,9 @@
     setInterval(() => {
 
         for(let i = 0; i < backgroundtoberainbowed.length; i++) {
-            backgroundtoberainbowed[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * backgroundspeed)) + ', 100%, 70%';
+            backgroundtoberainbowed[i].style.backgroundColor = 'hsl(' + (backgroundcounter + Math.floor(i * 1)) + ', 100%, 70%';
         }
-        backgroundcounter++;
+        backgroundcounter = backgroundcounter + backgroundspeed;
     }, 15);
 
 
