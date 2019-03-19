@@ -1,10 +1,5 @@
-//Script made by FeedbackFox. Please refrain from distributing this outside of github.
+//Script made by FeedbackFox. Please refrain from distributing this outside of github, but feel free to use it in whatever you want, whether commercial or non-commercial.
 //https://github.com/FeedbackFox/RGB-CSS-script
-//
-//Feel free to use this in whatever application you want to, whether commercial or non-commercial.
-//I'm just happy that my script was good enough to be used.
-//
-
 
 (function(){
     let textspeed = 1;
