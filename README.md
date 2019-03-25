@@ -23,4 +23,4 @@ foxrainbowhover  | Rainbow effect on anything with css color support. Turns on b
 foxrainbowhoverinv  | Rainbow effect on anything with css color support. Turns off by moving the mouse on top. You can select a different target by passing along their id using data-foxrainbowhover="#id"
 foxrainbowhoverbg  | Rainbow effect on anything with css background-color support. Turns on/off by moving the mouse on top / away.
 
-You can also find a working jsfiddle here: <NOT AVAIABLE YET.>
+You can also find a working jsfiddle here: https://jsfiddle.net/FeedbackFox/68ekobav/1/
